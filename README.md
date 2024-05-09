@@ -69,4 +69,6 @@ plugins:
   - runme:
       # Repository URL for generated badges
       repository: https://github.com/stateful/mkdocs-runme-plugin.git
+      # Docs Directory to generate the badge link, defaults to docs
+      docs_dir: workflows
 ```
