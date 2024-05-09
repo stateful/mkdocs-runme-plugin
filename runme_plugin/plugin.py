@@ -29,7 +29,7 @@ class RunmePlugin(BasePlugin[RunmeConfig]):
 			injected_markdown = f"[![](https://badgen.net/badge/Run%20with/Runme/5B3ADF?icon=https://runme.dev/img/logo.svg)](https://runme.dev/api/runme?repository={self.config.repository}&fileToOpen={path})"
 
 			# Inject the markdown after the heading
-			new_markdown = markdown.replace(heading, f"{heading}\n{injected_markdown}\n")
+			new_markdown = markdown.replace(heading, f"{heading}\n{injected_markdown}\n", 1)
 			return new_markdown
 		else:
 			# No heading found, return original markdown
