@@ -6,14 +6,14 @@ import json
 
 class RunmeConfig(Config):
 	repository = c.Type(str)
+	docs_dir = c.Type(str, default="docs")
 
 class RunmePlugin(BasePlugin[RunmeConfig]):
 	def __init__(self):
 		pass
 
 	def on_page_markdown(self, markdown, files, page, config, **kwards):
-		basename = os.path.basename(config.docs_dir)
-		path = f"{basename}{os.sep}{page.file.src_path}"
+		path = f"{self.config.docs_dir}{os.sep}{page.file.src_path}"
 		# Find the first heading using regular expression
 		match = re.search(r"^(#+)(.*)", markdown, flags=re.MULTILINE)
 
@@ -26,7 +26,7 @@ class RunmePlugin(BasePlugin[RunmeConfig]):
 			heading = match.group(0)
 
 			# Create the markdown to inject
-			injected_markdown = f"[![](https://badgen.net/badge/Run%20with/Runme/5B3ADF?icon=https://runme.dev/img/logo.svg)](https://runme.dev/api/runme?repository={self.config.repository}&fileToOpen={path}&command=demo&cell=0)"
+			injected_markdown = f"[![](https://badgen.net/badge/Run%20with/Runme/5B3ADF?icon=https://runme.dev/img/logo.svg)](https://runme.dev/api/runme?repository={self.config.repository}&fileToOpen={path})"
 
 			# Inject the markdown after the heading
 			new_markdown = markdown.replace(heading, f"{heading}\n{injected_markdown}\n")
