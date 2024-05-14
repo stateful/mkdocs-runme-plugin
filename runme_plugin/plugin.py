@@ -9,7 +9,7 @@ class RunmeConfig(Config):
 	repository = c.Type(str)
 	docs_dir = c.Type(str, default="docs")
 	badge_image = c.Type(str, default="https://badgen.net/badge/Run%20with/Stateful/67a88e")
-	link_url = c.Type(str, default="https://runme.dev/api/runme")
+	link_url = c.Type(str, default="https://runme.dev/api/stateful")
 
 class RunmePlugin(BasePlugin[RunmeConfig]):
 	def __init__(self):
@@ -25,7 +25,7 @@ class RunmePlugin(BasePlugin[RunmeConfig]):
 
 			anchor['href'] = f"{self.config.link_url}?repository={self.config.repository}&fileToOpen={path}&command=demo&cell={index}"
 			anchor.string = '▶️'
-			anchor['title'] = 'Run with runme'
+			anchor['title'] = 'Run with Stateful'
 			anchor['style'] = 'text-decoration: none; font-size: 1.5em; position: absolute; right: 1.6em; top: 0'
 
 			next_sibling = paragraph.next_sibling
